@@ -5,7 +5,7 @@ replace supported elements with span tags in order to style them easier
 
 supported input types 'checkbox', 'radio'
 
-### options
+## options
 
 *	'replaceAll'<br/>
 	true (default): replaces all supported elements within a jQuery obj<br/>
@@ -21,12 +21,12 @@ supported input types 'checkbox', 'radio'
 *	'complete'<br/>
 	callback function
 
-### data options
+## data options
 
 *	'data-icon-class'<br/>
 	set the data attribute to manually set a specific class name
 
-### sets following class names
+## sets following class names
 
 *	'checked' for active input element<br/>
 	'checkbox', 'radio' accordant to the element type of the original input element<br/>
