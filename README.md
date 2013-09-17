@@ -31,3 +31,24 @@ supported input types 'checkbox', 'radio'
 *	'checked' for active input element<br/>
 	'checkbox', 'radio' accordant to the element type of the original input element<br/>
 	'icon-checkbox', 'icon-radio' see 'hasIcon' above
+
+## usage
+
+basic:
+
+```js
+	jQuery.inputreplace();
+```
+
+extended:
+
+```js
+	jQuery.inputreplace({
+		replaceAll: false,
+		selector: '.my-preferred-selector',
+		hasIcon: false,
+		complete: function() {
+			// stuff to run
+		}
+	});
+```
