@@ -21,7 +21,7 @@
 	* 	true (default): adds a class to use with icon font; format: icon-[input type]
 	* 	false: does nothing
 	*
-	* 'onReplaceFinished'
+	* 'complete'
 	* 	callback function
 	*
 	***

@@ -18,7 +18,7 @@ supported input types 'checkbox', 'radio'
 	true (default): adds a class to use with icon font; format: icon-[input type]<br/>
 	false: does nothing
 
-*	'onReplaceFinished'<br/>
+*	'complete'<br/>
 	callback function
 
 ### data options
