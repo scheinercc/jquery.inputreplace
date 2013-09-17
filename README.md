@@ -7,27 +7,27 @@ supported input types 'checkbox', 'radio'
 
 ### options
 
-*	'replaceAll'
-	true (default): replaces all supported elements within a jQuery obj
+*	'replaceAll'<br/>
+	true (default): replaces all supported elements within a jQuery obj<br/>
 	false: replaces all elements with the selector specified by 'selector' within a jQuery obj
 
-*	'selector'
+*	'selector'<br/>
 	'.js-input-replace' (default): used if 'replaceAll' is set to 'false'
 
-*	'hasIcon'
-	true (default): adds a class to use with icon font; format: icon-[input type]
+*	'hasIcon'<br/>
+	true (default): adds a class to use with icon font; format: icon-[input type]<br/>
 	false: does nothing
 
-*	'onReplaceFinished'
+*	'onReplaceFinished'<br/>
 	callback function
 
 ### data options
 
-*	'data-icon-class'
+*	'data-icon-class'<br/>
 	set the data attribute to manually set a specific class name
 
 ### sets following class names
 
-*	'checked' for active input element
-	'checkbox', 'radio' accordant to the element type of the original input element
+*	'checked' for active input element<br/>
+	'checkbox', 'radio' accordant to the element type of the original input element<br/>
 	'icon-checkbox', 'icon-radio' see 'hasIcon' above
