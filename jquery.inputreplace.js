@@ -74,20 +74,20 @@
 			var $this = $(this),
 				thisType, thisFake, thisIcon, $thisFake, iconClass;
 
-			thisType = $this.attr('type');
+			thisType = $this.prop('type');
 
 			// check if the user has set a specific icon class
 			iconClass = $this.data('icon-class');
 
 			if ( $.inArray(thisType, inputTypes) === -1 ) {
 				if ( window.console ) {
-					return console.info( '[replaceInput] id: "' + $this.attr('id') + '"; unsupported input type: "' + thisType + '"; should be one of ' + createDefaultSelector( inputTypes ).toString());
+					return console.info( '[replaceInput] id: "' + $this.prop('id') + '"; unsupported input type: "' + thisType + '"; should be one of ' + createDefaultSelector( inputTypes ).toString());
 				}
 			}
 
 			// check if we are using an icon font and create the class
 			// possible class names: 'icon-checkbox', 'icon-radio' or set in HTML via data-icon-class
-			thisIcon = opts.hasIcon ? ' ' + iconClass || ' icon-' + thisType : '';
+			thisIcon = opts.hasIcon ? iconClass ? ' ' + iconClass : ' icon-' + thisType : '';
 
 			// create the element for the fake input
 			thisFake = '<span class="' + thisType + thisIcon + '" tabindex="0"></span>';
@@ -95,19 +95,22 @@
 			// hide the actual radio button
 			// insert the fake 'span' element right after
 			$this
-				// IEs < 9 don't trigger the click on the 'label' if the input gets set to 'display: none'
-				// moving elements off screen instead of using 'hide()'
-				.css({
+				// IEs < 9 don't trigger the click on the 'label'
+				//  if the input gets set to 'display: none' ('hide()')
+				//  but moving elements off screen makes the page jump
+				//  towards the offscreen (focused) element on click on the label
+				/*.css({
 					position: 'absolute',
 					top: '-9999px'
-				})
+				})*/
+				.hide()
 				.after( thisFake );
 
 			// create a jQuery obj from the new DOM elem
 			$thisFake = $this.next( '.' + thisType );
 
 			// if input is initially checked
-			if ( $this.is('[checked]') ) {
+			if ( $this.is(':checked') ) {
 
 				// check the fake element
 				$thisFake.addClass('checked');
@@ -141,13 +144,20 @@
 				$input = $this.prev('input'),
 
 				// find the corresponding label
-				$inputId = $input.attr('id'),
+				$inputId = $input.prop('id'),
 				$label = $('label[for="' + $inputId + '"]');
 
 			// add click handler to label if we find one
 			if ( $label.length ) {
 
 				$input
+					.on( 'click', function( evt ) {
+						changeState( $this, $input );
+						evt.stopPropagation();
+						evt.preventDefault();
+					});
+
+				$label
 					.on( 'click', function( evt ) {
 						changeState( $this, $input );
 						evt.stopPropagation();
@@ -178,8 +188,8 @@
 		function changeState( $fakeElem, $input ) {
 
 			var isChecked = $fakeElem.hasClass('checked'),
-				inputType = $input.attr('type'),
-				inputName = $input.attr('name');
+				inputType = $input.prop('type'),
+				inputName = $input.prop('name');
 
 			if ( isChecked ) {
 
@@ -188,6 +198,7 @@
 				if ( inputType === 'checkbox' ) {
 
 					$input.removeAttr('checked');
+					$input.trigger('change');
 					$fakeElem.removeClass('checked');
 				}
 			}
@@ -206,7 +217,8 @@
 				}
 
 				// check button
-				$input.attr('checked', true);
+				$input.prop('checked', true);
+				$input.trigger('change');
 				$fakeElem.addClass('checked');
 			}
 		}
