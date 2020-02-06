@@ -12,13 +12,14 @@ supported input types `checkbox`, `radio`
 	false: replaces all elements with the selector specified by 'selector' within a jQuery obj
 
 *	`selector`<br>
-	'.js-input-replace' (default): used if 'replaceAll' is set to 'false'
+	`.js-input-replace`: default selector string, can be changed to any other string.
+	used if `replaceAll` is set to `false`
 
 *	`hasIcon`<br>
 	true (default): adds a class to use with icon font; format: icon-[input type]<br/>
 	false: does nothing
 
-*	'complete'<br>
+*	`complete`<br>
 	callback function
 
 ## data options
